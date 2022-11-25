@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,14 +35,12 @@ public class BuildingCanvas : MonoBehaviour
             buildCannonTowerButton.onClick.RemoveAllListeners();
             buildCannonTowerButton.onClick.AddListener(() =>
             {
-                Debug.Log("buildCannonTowerButton");
                 BuildController.SetTowerToBuild(TowerType.Cannon, TowerLevel.Lv1);
             });
 
             buildArcherTowerButton.onClick.RemoveAllListeners();
             buildArcherTowerButton.onClick.AddListener(() =>
             {
-                Debug.Log("buildArcherTowerButton");
                 BuildController.SetTowerToBuild(TowerType.Archer, TowerLevel.Lv1);
             });
         }
@@ -63,14 +62,13 @@ public class BuildingCanvas : MonoBehaviour
                 upgradeText.SetText($"Upgrade to {nextLevel}");
                 upgradeButton.onClick.AddListener(() =>
                 {
-                    Debug.Log("upgradeButton");
                     BuildController.SetTowerToBuild(buildingPoint.currentTowerType, nextLevel);
                 });
             }
             destroyButton.onClick.RemoveAllListeners();
             destroyButton.onClick.AddListener(() =>
             {
-                Debug.Log("destroyButton");
+                BuildController.ClearBuilding();
 
             });
         }

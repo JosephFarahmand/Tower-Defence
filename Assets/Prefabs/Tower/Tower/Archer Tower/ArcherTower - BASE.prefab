@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4337054156276535565}
   - component: {fileID: 8307113319578205316}
   - component: {fileID: 8216361512516004559}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ArcherTower - BASE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,6 +76,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 743856e1b1383cf44a969281b7a127de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Type: 2
+  Level: 0
   targetTag: Target
   maxRange: 15
   minRange: 6
@@ -91,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4083661515289845944}
   - component: {fileID: 1508374792272317348}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}

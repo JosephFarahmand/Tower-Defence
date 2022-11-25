@@ -39,6 +39,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4297629385143707011, guid: 89a54a7324093e9499d0a5e4faf7a2aa, type: 3}
+      propertyPath: Level
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4297629385143707011, guid: 89a54a7324093e9499d0a5e4faf7a2aa, type: 3}
       propertyPath: firePoint
       value: 
       objectReference: {fileID: 4862584521135935180}

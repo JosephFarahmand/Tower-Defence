@@ -45,8 +45,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.99, y: 1.4535999, z: 8.246032}
-  m_Center: {x: 0, y: 0.68040085, z: 0}
+  m_Size: {x: 12, y: 6, z: 12}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!114 &5146228598915541121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,9 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverColor: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
-  currentTowerType: 0
-  currentTowerLevel: 0
-  canvas: {fileID: 0}
+  defaultBuilding: {fileID: 5147509360366989959}
 --- !u!1001 &5146228600172581559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -112,6 +110,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0ad9e12aa69f14419bc9e45d54eb299, type: 3}
+--- !u!1 &5147509360366989959 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1323643566170160, guid: c0ad9e12aa69f14419bc9e45d54eb299, type: 3}
+  m_PrefabInstance: {fileID: 5146228600172581559}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5150910244312146635 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4686353843056764, guid: c0ad9e12aa69f14419bc9e45d54eb299, type: 3}

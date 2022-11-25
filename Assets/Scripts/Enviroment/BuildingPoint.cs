@@ -1,27 +1,40 @@
-using System.Collections;
+
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BuildingPoint : MonoBehaviour
 {
+    BuildController buildController;
+
     [SerializeField] private Color hoverColor;
+    [SerializeField] private GameObject defaultBuilding;
 
-    private Renderer _renderer;
-    private Color _startColor;
+    Dictionary<Renderer, Color> _renderers;
 
-    private Tower _tower;
+    private Tower currentTower;
+    private List<Tower> towers;
+
     public TowerType currentTowerType { get; private set; } = TowerType.Empty;
     public TowerLevel currentTowerLevel { get; private set; }
 
-    BuildController buildController;
-
-    private void Start()
+    protected virtual void Start()
     {
-        buildController = GameManager.Instance.BuildController;
+        _renderers = new Dictionary<Renderer, Color>();
+        towers = new List<Tower>();
 
-        _renderer = GetComponentInChildren<Renderer>();
-        _startColor = _renderer.material.color;
+        buildController = GameManager.Instance.BuildController;
+        SetRenderers();
+    }
+
+    private void SetRenderers()
+    {
+        var renderers = GetComponentsInChildren<Renderer>();
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            Renderer renderer = renderers[i];
+            if (_renderers.ContainsKey(renderer)) continue;
+            _renderers.Add(renderer, renderer.material.color);
+        }
     }
 
     private void OnMouseDown()
@@ -29,20 +42,74 @@ public class BuildingPoint : MonoBehaviour
         buildController.SetCanvasEnable(this);
     }
 
+    private void OnMouseOver()
+    {
+        HoverColor();
+    }
+
     private void OnMouseEnter()
     {
-        _renderer.material.color = hoverColor;
+        HoverColor();
     }
 
     private void OnMouseExit()
     {
-        _renderer.material.color = _startColor;
+        DefaultColor();
+
+        buildController.SetCanvasDisable();
+    }
+
+    private void HoverColor()
+    {
+        foreach (var info in _renderers)
+        {
+            Renderer renderer = info.Key;
+            if (!renderer.gameObject.activeInHierarchy) continue;
+            renderer.material.color = hoverColor;
+        }
+    }
+
+    private void DefaultColor()
+    {
+        foreach (var info in _renderers)
+        {
+            Renderer renderer = info.Key;
+            if (!renderer.gameObject.activeInHierarchy) continue;
+            renderer.material.color = info.Value;
+        }
     }
 
     public void CreateTower(Tower towerPrefab, TowerType type, TowerLevel level)
     {
-        _tower = Instantiate(towerPrefab, transform.position, transform.rotation);
+        defaultBuilding.SetActive(false);
+
+        var tower = towers.Find(x => x.Type == type && x.Level == level);
+        if (tower == null)
+        {
+            currentTower = Instantiate(towerPrefab, transform.position, transform.rotation);
+            currentTower.transform.SetParent(transform);
+            towers.Add(currentTower);
+        }
+        else
+        {
+            tower.gameObject.SetActive(true);
+            currentTower = tower;
+        }
+
+        SetInfo(type, level);
+
+        SetRenderers();
+    }
+
+    private void SetInfo(TowerType type, TowerLevel level)
+    {
         currentTowerType = type;
         currentTowerLevel = level;
+    }
+
+    public void ClearTower()
+    {
+        defaultBuilding.SetActive(true);
+        currentTower.gameObject.SetActive(false);
     }
 }

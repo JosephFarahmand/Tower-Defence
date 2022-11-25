@@ -7,6 +7,10 @@ using UnityEngine;
 [RequireComponent(typeof(SphereCollider))]
 public abstract class Tower : MonoBehaviour
 {
+    [Header("Info")]
+    public TowerType Type;
+    public TowerLevel Level;
+
     [Header("Target")]
     [SerializeField, Tag] private string targetTag;
     [SerializeField] private float maxRange = 15f;
@@ -95,4 +99,19 @@ public abstract class Tower : MonoBehaviour
     }
 
     protected abstract void Shoot(Transform target);
+
+    //private void OnMouseDown()
+    //{
+    //    GameManager.Instance.BuildController.SetCanvasEnable(this);
+    //}
+
+    //private void OnMouseEnter()
+    //{
+        
+    //}
+
+    //private void OnMouseExit()
+    //{
+
+    //}
 }

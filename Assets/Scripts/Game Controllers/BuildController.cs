@@ -41,4 +41,11 @@ public class BuildController : MonoBehaviour
 
         SetCanvasDisable();
     }
+
+    public void ClearBuilding()
+    {
+        _buildingPoint.ClearTower();
+
+        SetCanvasDisable();
+    }
 }

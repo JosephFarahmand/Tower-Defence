@@ -358,6 +358,10 @@ PrefabInstance:
       value: ArcherTower Lv 4-B
       objectReference: {fileID: 0}
     - target: {fileID: 8216361512516004559, guid: db887a41a23a40743a2299f01a5c9174, type: 3}
+      propertyPath: Level
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8216361512516004559, guid: db887a41a23a40743a2299f01a5c9174, type: 3}
       propertyPath: archers.Array.size
       value: 5
       objectReference: {fileID: 0}
