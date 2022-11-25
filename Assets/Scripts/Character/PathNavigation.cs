@@ -15,7 +15,7 @@ public class PathNavigation : MonoBehaviour
 
     private void Awake()
     {
-        points = GameManager.Instance.Controller.GetPoints();
+        points = GameManager.Instance.EnviromentController.GetPoints();
     }
 
     private void Start()

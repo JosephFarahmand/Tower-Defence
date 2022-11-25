@@ -4,7 +4,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public EnviromentController Controller { get; private set; }
+    public EnviromentController EnviromentController { get; private set; }
+    public BuildController BuildController { get; private set; }
+    public GameData GameData { get; private set; }
 
     private void Awake()
     {
@@ -24,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     private void LoadControllers()
     {
-        Controller ??= FindObjectOfType<EnviromentController>();
+        EnviromentController ??= FindObjectOfType<EnviromentController>();
+        BuildController ??= FindObjectOfType<BuildController>();
+        GameData??= FindObjectOfType<GameData>();
     }
 }
