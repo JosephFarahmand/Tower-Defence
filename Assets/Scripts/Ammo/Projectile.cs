@@ -1,11 +1,17 @@
 using NaughtyAttributes;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Projectile : Ammo
 {
     [SerializeField] private GameObject impactEffect;
     [SerializeField,Tag] private string groundTag;
+
+    [SerializeField] float explosionRadius = 5.0f;
+    [SerializeField] float explosionPower = 2000.0f;
+
+    [SerializeField] float damage = 50;
 
     public override void Seek(Transform _target)
     {
@@ -32,8 +38,28 @@ public class Projectile : Ammo
         var effectIns = Instantiate(impactEffect, transform.position, Quaternion.identity);
         Destroy(effectIns, 2f);
 
+        Vector3 explosionPosition = transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPosition, explosionRadius);
+        foreach (var hit in colliders)
+        {
+            //if (hit.TryGetComponent(out Rigidbody rigidbody))
+            //{
+            //    AddExplosionForce(explosionPosition, rigidbody);
+            //}
+            if (hit.TryGetComponent(out Enemy enemy))
+            {
+                enemy.TakeDamage(damage);
+            }
+        }
+
         Destroy(gameObject);
     }
+
+    public void AddExplosionForce(Vector3 explosionPosition, Rigidbody targetRigidbody)
+    {
+        targetRigidbody.AddExplosionForce(explosionPower, explosionPosition, explosionRadius);
+    }
+
     void ShootWithGravity(Vector3 targetPosition)
     {
         var distance = targetPosition - transform.position;
