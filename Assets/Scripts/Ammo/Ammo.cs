@@ -4,41 +4,28 @@ using UnityEngine;
 
 public abstract class Ammo : MonoBehaviour
 {
+    protected Vector3 targetPosition;
     protected Transform target;
 
     [SerializeField] protected float speed;
 
-    //[SerializeField] private GameObject impactEffect;
+    [SerializeField] private float damage = 50;
+    [SerializeField] private GameObject impactEffect;
 
     public virtual void Seek(Transform _target)
     {
         target = _target;
+        targetPosition = target.position;
     }
 
-    private void Update()
+    protected void TakeDamageToEnemy(Enemy enemy)
     {
-        if (target == null)
-        {
-            Destroy(gameObject);
-
-            return;
-        }
-
-        var dir = target.position - transform.position;
-        var distanceThisFrame = speed * Time.deltaTime;
-
-        if (dir.magnitude <= distanceThisFrame)
-        {
-            HitTarget();
-            return;
-        }
-
-        transform.Translate(dir.normalized * distanceThisFrame, Space.World);
+        enemy.TakeDamage(damage);
     }
 
-    protected virtual void HitTarget()
+    protected void ShowImpactEffect()
     {
-        Destroy(target.gameObject);
-        Destroy(gameObject);
+        var effectIns = Instantiate(impactEffect, transform.position, Quaternion.identity);
+        Destroy(effectIns, 2f);
     }
 }
