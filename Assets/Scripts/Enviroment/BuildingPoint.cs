@@ -83,6 +83,11 @@ public class BuildingPoint : MonoBehaviour
     {
         defaultBuilding.SetActive(false);
 
+        if(currentTower != null)
+        {
+            currentTower.gameObject.SetActive(false);
+        }
+
         var tower = towers.Find(x => x.Type == type && x.Level == level);
         if (tower == null)
         {

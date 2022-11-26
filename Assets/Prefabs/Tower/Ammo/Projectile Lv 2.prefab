@@ -64,6 +64,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6891331498627621817, guid: fcf2ed1ae0e2e9445807ad4b63504b63, type: 3}
+      propertyPath: m_Height
+      value: 1.933325
+      objectReference: {fileID: 0}
+    - target: {fileID: -6891331498627621817, guid: fcf2ed1ae0e2e9445807ad4b63504b63, type: 3}
+      propertyPath: m_Radius
+      value: 0.9666625
+      objectReference: {fileID: 0}
     - target: {fileID: 2049563125012673111, guid: fcf2ed1ae0e2e9445807ad4b63504b63, type: 3}
       propertyPath: m_Name
       value: Projectile Lv 2

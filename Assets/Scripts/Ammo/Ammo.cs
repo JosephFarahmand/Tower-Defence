@@ -4,13 +4,13 @@ using UnityEngine;
 
 public abstract class Ammo : MonoBehaviour
 {
-    private Transform target;
+    protected Transform target;
 
-    [SerializeField] private float speed;
+    [SerializeField] protected float speed;
 
-    [SerializeField] private GameObject impactEffect;
+    //[SerializeField] private GameObject impactEffect;
 
-    public void Seek(Transform _target)
+    public virtual void Seek(Transform _target)
     {
         target = _target;
     }
