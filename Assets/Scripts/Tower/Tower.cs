@@ -15,7 +15,7 @@ public abstract class Tower : MonoBehaviour
     [SerializeField, Tag] private string targetTag;
     [SerializeField] private float maxRange = 15f;
     [SerializeField] private float minRange = 15f;
-    private List<Transform> targets;
+    protected List<Transform> targets;
     private Transform target;
 
     [Header("Fire")]
@@ -72,8 +72,10 @@ public abstract class Tower : MonoBehaviour
         }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
+        if (targets.Count == 0) return;
+
         SetTarget();
 
         ReadyToShoot();
@@ -100,18 +102,5 @@ public abstract class Tower : MonoBehaviour
 
     protected abstract void Shoot(Transform target);
 
-    //private void OnMouseDown()
-    //{
-    //    GameManager.Instance.BuildController.SetCanvasEnable(this);
-    //}
-
-    //private void OnMouseEnter()
-    //{
-        
-    //}
-
-    //private void OnMouseExit()
-    //{
-
-    //}
+    public Transform GetTarget() => targets.RandomItem();
 }

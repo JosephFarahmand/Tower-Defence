@@ -6,7 +6,7 @@ public class Arrow : Ammo
 {
     private void Update()
     {
-        if (target != null)
+        if (target == null)
         {
             Destroy(gameObject);
 

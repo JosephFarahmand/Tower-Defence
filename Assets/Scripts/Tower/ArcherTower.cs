@@ -8,6 +8,15 @@ public class ArcherTower : Tower
     protected override void Shoot(Transform target)
     {
         if (target == null) return;
-        archers.ForEach(x => x.Shoot(target));
+        archers.ForEach(x => x.Shoot());
+    }
+
+    protected override void Update()
+    {
+        if (targets.Count == 0) return;
+
+        base.Update();
+
+        archers.ForEach(x => x.SetLookAt(GetTarget()));
     }
 }
