@@ -14,11 +14,6 @@ public class UserInterfaceManager : MonoBehaviour
 
     private Stack<UIPage> openPagesStack;
 
-    private void Awake()
-    {
-        Initialization();
-    }
-
     public void Initialization()
     {
         if (instance == null)

@@ -7,12 +7,14 @@ public class TowerData : ScriptableObject
     [SerializeField] private TowerType type;
     [SerializeField] private List<TowerInfo> towers;
     public Tower GetTower(TowerLevel level) => towers.Find(x => x.level == level).prefab;
+    public int GetTowerPrice(TowerLevel level) => towers.Find(x => x.level == level).price;
 
     [System.Serializable]
     private struct TowerInfo
     {
         public TowerLevel level;
         public Tower prefab;
+        public int price;
     }
 
     public bool Equals(TowerType type)

@@ -4,7 +4,7 @@ public class BuildController : MonoBehaviour
 {
     [SerializeField] private BuildingCanvas canvas;
 
-    private BuildingPoint _buildingPoint;
+    private BuildingPoint selectedBuildingPoint;
 
     private void Start()
     {
@@ -24,28 +24,28 @@ public class BuildController : MonoBehaviour
         SetBuildingPoint(buildingPoint);
     }
 
-    public void SetCanvasDisable()
+    private void SetBuildingPoint(BuildingPoint buildingPoint)
     {
-        canvas.gameObject.SetActive(false);
-    }
-
-    public void SetBuildingPoint(BuildingPoint buildingPoint)
-    {
-        _buildingPoint = buildingPoint;
+        selectedBuildingPoint = buildingPoint;
     }
 
     public void SetTowerToBuild(TowerType type, TowerLevel level)
     {
         var towerPrefab = GameManager.Instance.GameData.GetTower(type, level);
-        _buildingPoint.CreateTower(towerPrefab, type, level);
+        selectedBuildingPoint.CreateTower(towerPrefab, type, level);
 
         SetCanvasDisable();
     }
 
     public void ClearBuilding()
     {
-        _buildingPoint.ClearTower();
+        selectedBuildingPoint.ClearTower();
 
         SetCanvasDisable();
+    }
+
+    public void SetCanvasDisable()
+    {
+        canvas.gameObject.SetActive(false);
     }
 }

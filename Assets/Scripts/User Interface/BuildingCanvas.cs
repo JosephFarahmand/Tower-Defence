@@ -35,13 +35,13 @@ public class BuildingCanvas : MonoBehaviour
             buildCannonTowerButton.onClick.RemoveAllListeners();
             buildCannonTowerButton.onClick.AddListener(() =>
             {
-                BuildController.SetTowerToBuild(TowerType.Cannon, TowerLevel.Lv1);
+                Shop.PurcheseTower(TowerType.Cannon, TowerLevel.Lv1);
             });
 
             buildArcherTowerButton.onClick.RemoveAllListeners();
             buildArcherTowerButton.onClick.AddListener(() =>
             {
-                BuildController.SetTowerToBuild(TowerType.Archer, TowerLevel.Lv1);
+                Shop.PurcheseTower(TowerType.Archer, TowerLevel.Lv1);
             });
         }
         else
@@ -62,7 +62,7 @@ public class BuildingCanvas : MonoBehaviour
                 upgradeText.SetText($"Upgrade to {nextLevel}");
                 upgradeButton.onClick.AddListener(() =>
                 {
-                    BuildController.SetTowerToBuild(buildingPoint.currentTowerType, nextLevel);
+                    Shop.PurcheseTower(buildingPoint.currentTowerType, nextLevel);
                 });
             }
             destroyButton.onClick.RemoveAllListeners();

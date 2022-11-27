@@ -1,7 +1,4 @@
 using Lindon.UI;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -12,6 +9,9 @@ public class PlayerStats : UIElement
 
     protected override void SetValues()
     {
+        goldAmountText.SetText(GameManager.Instance.ProfileController.Profile.GoldAmount.ToString());
+        scoreAmountText.SetText(GameManager.Instance.ProfileController.Profile.Score.ToString());
+
         GameManager.Instance.ProfileController.onChangePropertyCallback += updateUI;
     }
 

@@ -16,11 +16,16 @@ MonoBehaviour:
   towers:
   - level: 0
     prefab: {fileID: 5380087511058158614, guid: b69753eee0045b14b857c169edd5dfb6, type: 3}
+    price: 10
   - level: 1
     prefab: {fileID: 5380087511058158614, guid: d9d5756902a04ad4aaa9c89a75d1e1e2, type: 3}
+    price: 25
   - level: 2
     prefab: {fileID: 5380087511058158614, guid: c357ad1f645bf444fa8752cc87a52270, type: 3}
+    price: 55
   - level: 3
     prefab: {fileID: 5380087511058158614, guid: 4746ae228da83334e8eb1fac95f4e64f, type: 3}
+    price: 95
   - level: 4
     prefab: {fileID: 5380087511058158614, guid: 2917ece179531164eb8d44cd38d1d50d, type: 3}
+    price: 95

@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public EnviromentController EnviromentController { get; private set; }
     public BuildController BuildController { get; private set; }
     public GameData GameData { get; private set; }
+    public ProfileController ProfileController { get; private set; }
 
     private void Awake()
     {
@@ -24,10 +25,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        InitializationControllers();
+    }
+
     private void LoadControllers()
     {
         EnviromentController ??= FindObjectOfType<EnviromentController>();
         BuildController ??= FindObjectOfType<BuildController>();
-        GameData??= FindObjectOfType<GameData>();
+        GameData ??= FindObjectOfType<GameData>();
+        ProfileController ??= FindObjectOfType<ProfileController>();
+
+        FindObjectOfType<UserInterfaceManager>().Initialization();
+    }
+
+    private void InitializationControllers()
+    {
+        ProfileController.Initialization();
     }
 }
