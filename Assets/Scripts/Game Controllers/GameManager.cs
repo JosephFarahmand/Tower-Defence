@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        TimeScaleHelper.ChangeTimeScale(TimeScaleHelper.TimeScale.x0);
         InitializationControllers();
     }
 

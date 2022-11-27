@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnviromentController : MonoBehaviour
@@ -17,6 +18,8 @@ public class EnviromentController : MonoBehaviour
 
     public List<Wave> GetWaves() => waves;
 
+    public int TotalEnemyCount => waves.Select(x => x.EnemiesCount).Sum();
+
     private void Update()
     {
         waveController.Update();
@@ -31,20 +34,8 @@ public class Wave
     [Tooltip("Delay to spawn each enemy"),Min(0)] private float timeBetweenSpawn = 0.5f;
     [Tooltip("Delay to start this wave"),Min(0)] public float timeToStart = 5;
 
-    public float SpawnTime
-    {
-        get
-        {
-            var val = 0f;
-
-            foreach(var enemyInfo in enemies)
-            {
-                val += enemyInfo.count * timeBetweenSpawn;
-            }
-
-            return val;
-        }
-    }
+    public int EnemiesCount => enemies.Select(x => x.count).Sum();
+    public float SpawnTime => EnemiesCount * timeBetweenSpawn;
 
     public void SpawnWave()
     {

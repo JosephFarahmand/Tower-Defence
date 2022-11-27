@@ -19,7 +19,7 @@ public class GamePage : UIPage
 
     protected override void SetValues()
     {
-
+        TimeScaleHelper.ChangeTimeScale(TimeScaleHelper.TimeScale.x1);
     }
 
     protected override void SetValuesOnSceneLoad()
@@ -32,6 +32,15 @@ public class GamePage : UIPage
         stats.onTackDamage += updateHealthBar;
         healthBar.maxValue = stats.MaxHealth;
         healthBar.value = stats.MaxHealth;
+
+
+        var gameSpeedText = gameSpeedButton.GetComponentInChildren<TMP_Text>();
+        gameSpeedButton.onClick.RemoveAllListeners();
+        gameSpeedButton.onClick.AddListener(() =>
+        {
+            TimeScaleHelper.NextTimeScale();
+        });
+        TimeScaleHelper.onChangeTimeScale += () => gameSpeedText.SetText(TimeScaleHelper.GetTimeScaleName());
     }
 
     private void updateHealthBar(float currentHealth)

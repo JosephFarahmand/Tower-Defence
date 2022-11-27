@@ -11081,7 +11081,7 @@ MonoBehaviour:
   - waypoint: {fileID: 2013019105}
     enemies:
     - type: 2
-      count: 20
+      count: 5
     timeToStart: 5
   - waypoint: {fileID: 2013019105}
     enemies:
@@ -11089,6 +11089,13 @@ MonoBehaviour:
       count: 3
     - type: 3
       count: 1
+    timeToStart: 5
+  - waypoint: {fileID: 2013019105}
+    enemies:
+    - type: 2
+      count: 10
+    - type: 3
+      count: 3
     timeToStart: 5
 --- !u!1001 &675448441
 PrefabInstance:

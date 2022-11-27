@@ -5,22 +5,25 @@ public class EnemyController
     public List<Enemy> enemies;
     GameStats stats;
 
+    public int totalEnemiesCount = 0;
+
     public EnemyController()
     {
         enemies = new List<Enemy>();
         stats = GameManager.Instance.Stats;
+
+        totalEnemiesCount = GameManager.Instance.EnviromentController.TotalEnemyCount;
     }
 
     public void Assign(Enemy enemy)
     {
-        enemies.Add(enemy);
+
     }
 
     public void Unassign(Enemy enemy)
     {
-        enemies.Remove(enemy);
-
-        if(enemies.Count == 0)
+        totalEnemiesCount--;
+        if (totalEnemiesCount == 0)
         {
             UserInterfaceManager.Open<WinPage>();
         }
