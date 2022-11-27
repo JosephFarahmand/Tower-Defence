@@ -50,6 +50,7 @@ public class RadialLayout : LayoutGroup
         for (int i = 0; i < transform.childCount; i++)
         {
             RectTransform child = (RectTransform)transform.GetChild(i);
+            if (!child.gameObject.activeInHierarchy) continue;
             if (child != null)
             {
                 //Adding the elements to the tracker stops the user from modifiying their positions via the editor.
