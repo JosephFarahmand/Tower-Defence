@@ -35,4 +35,9 @@ public class Waypoint : MonoBehaviour
             Gizmos.DrawLine(child.position, nextChild.position);
         }
     }
+
+    private void Reset()
+    {
+        spawner ??= GetComponentInChildren<WaveSpawner>();
+    }
 }

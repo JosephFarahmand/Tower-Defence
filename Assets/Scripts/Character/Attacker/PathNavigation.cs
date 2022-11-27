@@ -13,18 +13,16 @@ public class PathNavigation : MonoBehaviour
     Transform targetPoint;
     int pointIndex = 0;
 
-    private void Awake()
+    public void SetPath(Transform[] points)
     {
-        points = GameManager.Instance.EnviromentController.GetPoints();
-    }
-
-    private void Start()
-    {
+        this.points = points;
         targetPoint = points[0];
     }
 
     private void Update()
     {
+        if (points == null) return;
+
         var dir = targetPoint.position - transform.position;
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 

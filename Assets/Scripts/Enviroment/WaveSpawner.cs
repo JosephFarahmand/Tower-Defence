@@ -1,55 +1,71 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static Wave;
 
 public class WaveSpawner : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> enemyPrefabs;
-    [SerializeField] private Transform spawnPoint;
+    GameData gameData;
 
-    [SerializeField] private float timeBetweenWaves = 5;
-    private float countdown = 2;
+    private float timeBetweenSpawn;
 
-    private int waveNumber = 1;
+    Dictionary<CharacterType,int> enemiesInfo;
 
-    private void Update()
+    int totalEnemy = 0;
+
+    private void Start()
     {
-        if (countdown > 0)
+        gameData = GameManager.Instance.GameData;
+    }
+
+    public void SpawnWave(Transform[] points, float timeBetweenSpawn, List<EnemyInfo> enemiesInfo)
+    {
+        this.enemiesInfo = new Dictionary< CharacterType, int>();
+        foreach (var info in enemiesInfo)
         {
-            countdown -= Time.deltaTime;
-
-            if (countdown <= 0)
-            {
-                
-                countdown = timeBetweenWaves;
-            }
+            this.enemiesInfo.Add(info.type, info.count);
+            totalEnemy += info.count;
         }
+
+        this.timeBetweenSpawn = timeBetweenSpawn;
+        StartCoroutine(SpawnWaveCorotine(points));
     }
 
-    public void SpawnWave()
-    {
-        StartCoroutine(SpawnWaveCorotine());
-    }
-
-    private IEnumerator SpawnWaveCorotine()
+    private IEnumerator SpawnWaveCorotine(Transform[] points)
     {
         Debug.Log("Wave Incomming!");
 
-        for(int i = 0; i < waveNumber; i++)
+        for (int i = 0; i < totalEnemy; i++)
         {
-            SpawnEnemy();
+            SpawnEnemy(points);
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(timeBetweenSpawn);
         }
-
-        waveNumber++;
     }
 
-    private void SpawnEnemy()
+    private void SpawnEnemy(Transform[] points)
     {
-        var prefab = enemyPrefabs.RandomItem();
+        var prefab = GetEnemy();
+        if (prefab == null) return;
+        var enemyIns = Instantiate(prefab, transform.position, Quaternion.identity);
+        enemyIns.SetPath(points);
+    }
 
-        Instantiate(prefab, spawnPoint.position, Quaternion.identity);
+    public Enemy GetEnemy()
+    {
+        if (enemiesInfo.Count == 0) return null;
+        var info = enemiesInfo.RandomItem();
+        if (info.Value > 0)
+        {
+            enemiesInfo[info.Key]--;
+            return gameData.GetEnemy(info.Key);
+        }
+        else
+        {
+            enemiesInfo.Remove(info.Key);
+            return GetEnemy();
+        }
     }
 }

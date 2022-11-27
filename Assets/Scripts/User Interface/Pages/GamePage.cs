@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class GamePage : UIPage
 {
+    WaveController waveController;
+
     [SerializeField] private TMP_Text waveCounterText;
     [SerializeField] private TMP_Text timerText;
 
@@ -18,11 +20,13 @@ public class GamePage : UIPage
 
     protected override void SetValuesOnSceneLoad()
     {
-        GameManager.Instance.EnviromentController.waveController.OnStartWaveCallback += waveCounter;
+        waveController = GameManager.Instance.EnviromentController.waveController;
+        waveController.OnStartWaveCallback += waveCounter;
+        waveCounterText.SetText($"0/{waveController.TotalWaveCount}");
     }
 
-    private void waveCounter(int waveIndex, int totalWave)
+    private void waveCounter(int waveIndex)
     {
-        waveCounterText.SetText($"{waveIndex + 1}/{totalWave}");
+        waveCounterText.SetText($"{waveIndex}/{waveController.TotalWaveCount}");
     }
 }

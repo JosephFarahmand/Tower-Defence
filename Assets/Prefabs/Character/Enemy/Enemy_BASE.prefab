@@ -313,8 +313,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30f72ea6e4a4334ba6daf92d27feaa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   maxHealth: 100
   virtualHealthBar: {fileID: 8801041949619117126}
+  pathNavigation: {fileID: 2530718760073865604}
 --- !u!114 &2530718760073865604
 MonoBehaviour:
   m_ObjectHideFlags: 0
