@@ -55,8 +55,6 @@ public class BuildingPoint : MonoBehaviour
     private void OnMouseExit()
     {
         DefaultColor();
-
-        buildController.SetCanvasDisable();
     }
 
     private void HoverColor()

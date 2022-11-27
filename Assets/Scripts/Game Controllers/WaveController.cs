@@ -43,7 +43,7 @@ public class WaveController
                 {
                     // next wave
                     currentWave = waves[WaveNumber];
-                    countdown = waves[WaveNumber].timeToStart;
+                    countdown = waves[WaveNumber].timeToStart + waves[WaveNumber - 1].SpawnTime;
                 }
             }
         }

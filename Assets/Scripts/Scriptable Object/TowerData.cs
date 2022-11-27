@@ -27,8 +27,8 @@ public enum TowerLevel
     Lv1,
     Lv2,
     Lv3,
-    Lv4A,
-    Lv4B,
+    Lv4,
+    Lv5,
 }
 
 public enum TowerType

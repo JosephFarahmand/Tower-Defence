@@ -1,6 +1,8 @@
 ﻿using Lindon.UI;
 using System;
+using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +15,8 @@ public class GamePage : UIPage
 
     [SerializeField] private Button gameSpeedButton;
 
+    [SerializeField] private Slider healthBar;
+
     protected override void SetValues()
     {
 
@@ -23,6 +27,16 @@ public class GamePage : UIPage
         waveController = GameManager.Instance.EnviromentController.waveController;
         waveController.OnStartWaveCallback += waveCounter;
         waveCounterText.SetText($"0/{waveController.TotalWaveCount}");
+
+        var stats = GameManager.Instance.Stats;
+        stats.onTackDamage += updateHealthBar;
+        healthBar.maxValue = stats.MaxHealth;
+        healthBar.value = stats.MaxHealth;
+    }
+
+    private void updateHealthBar(float currentHealth)
+    {
+        healthBar.value = currentHealth;
     }
 
     private void waveCounter(int waveIndex)

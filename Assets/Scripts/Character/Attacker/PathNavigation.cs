@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -36,6 +35,7 @@ public class PathNavigation : MonoBehaviour
     {
         if (pointIndex >= points.Length -1)
         {
+            GameManager.Instance.EnemyController.OnLastPointReach(GetComponent<Enemy>());
             Destroy(gameObject);
             return;
         }

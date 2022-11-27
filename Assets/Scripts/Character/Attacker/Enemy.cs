@@ -14,8 +14,11 @@ public enum CharacterType
 [RequireComponent(typeof(PathNavigation))]
 public class Enemy : MonoBehaviour
 {
+    EnemyController EnemyController;
+
     [SerializeField] private CharacterType type;
 
+    public float damage = 1;
     [SerializeField] private float maxHealth;
     private float health;
     [SerializeField] private VirtualHealthBar virtualHealthBar;
@@ -36,6 +39,9 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        EnemyController = GameManager.Instance.EnemyController;
+        EnemyController.Assign(this);
+
         health = maxHealth;
     }
 
@@ -55,11 +61,17 @@ public class Enemy : MonoBehaviour
     {
         virtualHealthBar.gameObject.SetActive(false);
         Reward.KillEnemy(this);
+
         Destroy(gameObject);
     }
 
     public void SetPath(Transform[] points)
     {
         pathNavigation.SetPath(points);
+    }
+
+    private void OnDestroy()
+    {
+        EnemyController.Unassign(this);
     }
 }

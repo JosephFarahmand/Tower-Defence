@@ -31,6 +31,20 @@ public class Wave
     [Tooltip("Delay to spawn each enemy"),Min(0)] private float timeBetweenSpawn = 0.5f;
     [Tooltip("Delay to start this wave"),Min(0)] public float timeToStart = 5;
 
+    public float SpawnTime
+    {
+        get
+        {
+            var val = 0f;
+
+            foreach(var enemyInfo in enemies)
+            {
+                val += enemyInfo.count * timeBetweenSpawn;
+            }
+
+            return val;
+        }
+    }
 
     public void SpawnWave()
     {

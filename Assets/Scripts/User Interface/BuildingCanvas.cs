@@ -6,70 +6,102 @@ using UnityEngine.UI;
 public class BuildingCanvas : MonoBehaviour
 {
     BuildController BuildController;
+    GameData gameData;
+
+    [SerializeField] private TMP_Text upgradeText;
 
     [Header("Button")]
-    [SerializeField] private Button upgradeButton;
-    TMP_Text upgradeText;
-    [SerializeField] private Button destroyButton;
-    [SerializeField] private Button buildCannonTowerButton;
-    [SerializeField] private Button buildArcherTowerButton;
+    [SerializeField] private ButtonInfo upgradeButton;
+    [SerializeField] private ButtonInfo destroyButton;
+    [SerializeField] private ButtonInfo buildCannonTowerButton;
+    [SerializeField] private ButtonInfo buildArcherTowerButton;
 
-    private void Start()
+    [System.Serializable]
+    public class ButtonInfo
     {
-        BuildController = GameManager.Instance.BuildController;
-        upgradeText = upgradeButton.GetComponentInChildren<TMP_Text>();
+        [SerializeField] private Button button;
+        [SerializeField] private TMP_Text costText;
+
+        public void SetActive(bool value)
+        {
+            button.gameObject.SetActive(value);
+        }
+
+        public void AddListener(Action callback, float cost = -1)
+        {
+            SetActive(true);
+
+            button.onClick.RemoveAllListeners();
+            button.onClick.AddListener(() =>
+            {
+                callback?.Invoke();
+            });
+
+            if (cost <= -1)
+            {
+                costText.gameObject.SetActive(false);
+            }
+            else
+            {
+                costText.gameObject.SetActive(true);
+                costText.SetText(cost.ToString());
+            }
+        }
+
+        public void SetInteractable(bool value)
+        {
+            button.interactable = value;
+
+            costText.gameObject.SetActive(value);
+        }
+    }
+
+    private void OnEnable()
+    {
+        gameData ??= GameManager.Instance.GameData;
+        BuildController ??= GameManager.Instance.BuildController;
     }
 
     public void SetValues(BuildingPoint buildingPoint)
     {
-        upgradeButton.gameObject.SetActive(false);
-        destroyButton.gameObject.SetActive(false);
-        buildCannonTowerButton.gameObject.SetActive(false);
-        buildArcherTowerButton.gameObject.SetActive(false);
+        upgradeButton.SetActive(false);
+        destroyButton.SetActive(false);
+        buildCannonTowerButton.SetActive(false);
+        buildArcherTowerButton.SetActive(false);
 
         if (buildingPoint.currentTowerType == TowerType.Empty)
         {
-            buildCannonTowerButton.gameObject.SetActive(true);
-            buildArcherTowerButton.gameObject.SetActive(true);
-
-            buildCannonTowerButton.onClick.RemoveAllListeners();
-            buildCannonTowerButton.onClick.AddListener(() =>
+            buildCannonTowerButton.AddListener(() =>
             {
                 Shop.PurcheseTower(TowerType.Cannon, TowerLevel.Lv1);
-            });
+            }, gameData.GetTowerPrice(TowerType.Cannon, TowerLevel.Lv1));
 
-            buildArcherTowerButton.onClick.RemoveAllListeners();
-            buildArcherTowerButton.onClick.AddListener(() =>
+            buildArcherTowerButton.AddListener(() =>
             {
                 Shop.PurcheseTower(TowerType.Archer, TowerLevel.Lv1);
-            });
+            }, gameData.GetTowerPrice(TowerType.Cannon, TowerLevel.Lv1));
         }
         else
         {
-            upgradeButton.gameObject.SetActive(true);
-            destroyButton.gameObject.SetActive(true);
-
-            upgradeButton.onClick.RemoveAllListeners();
-            if (buildingPoint.currentTowerLevel == TowerLevel.Lv4A || buildingPoint.currentTowerLevel == TowerLevel.Lv4B)
+            if (buildingPoint.currentTowerLevel == TowerLevel.Lv5)
             {
-                upgradeButton.interactable = false;
+                upgradeButton.SetInteractable(false);
                 upgradeText.SetText("Max Level");
             }
             else
             {
-                upgradeButton.interactable = true;
+                upgradeButton.SetInteractable(true);
                 var nextLevel = buildingPoint.currentTowerLevel + 1;
                 upgradeText.SetText($"Upgrade to {nextLevel}");
-                upgradeButton.onClick.AddListener(() =>
+                upgradeButton.AddListener(() =>
                 {
                     Shop.PurcheseTower(buildingPoint.currentTowerType, nextLevel);
-                });
+                }, gameData.GetTowerPrice(buildingPoint.currentTowerType, nextLevel));
             }
-            destroyButton.onClick.RemoveAllListeners();
-            destroyButton.onClick.AddListener(() =>
+
+            destroyButton.AddListener(() =>
             {
                 BuildController.ClearBuilding();
-
             });
         }
     }

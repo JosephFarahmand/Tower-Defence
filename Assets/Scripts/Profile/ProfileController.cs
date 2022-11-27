@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 
-public class ProfileController : MonoBehaviour
+public class ProfileController
 {
     public Profile Profile { get; private set; }
 
     public delegate void OnChangeProperty(Profile profile);
     public OnChangeProperty onChangePropertyCallback;
 
-    public void Initialization()
+    public ProfileController()
     {
         Profile = new Profile(500, 0);
+    }
 
+    public void Initialization()
+    {
         onChangePropertyCallback?.Invoke(Profile);
     }
 
