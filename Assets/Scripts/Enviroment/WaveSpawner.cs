@@ -21,13 +21,18 @@ public class WaveSpawner : MonoBehaviour
 
             if (countdown <= 0)
             {
-                StartCoroutine(SpawnWave());
+                
                 countdown = timeBetweenWaves;
             }
         }
     }
 
-    private IEnumerator SpawnWave()
+    public void SpawnWave()
+    {
+        StartCoroutine(SpawnWaveCorotine());
+    }
+
+    private IEnumerator SpawnWaveCorotine()
     {
         Debug.Log("Wave Incomming!");
 

@@ -1,9 +1,12 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
+    [SerializeField,Required] private WaveSpawner spawner;
+
     Transform[] points;
     public Transform[] Points
     {
@@ -20,6 +23,8 @@ public class Waypoint : MonoBehaviour
             return points;
         }
     }
+
+    public WaveSpawner Spawner { get => spawner;  }
 
     private void OnDrawGizmos()
     {
