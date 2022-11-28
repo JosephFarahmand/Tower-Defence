@@ -28,7 +28,7 @@ public class BuildingPoint : MonoBehaviour
 
     private void SetRenderers()
     {
-        var renderers = GetComponentsInChildren<Renderer>();
+        var renderers = GetComponentsInChildren<MeshRenderer>();
         for (int i = 0; i < renderers.Length; i++)
         {
             Renderer renderer = renderers[i];
@@ -114,5 +114,7 @@ public class BuildingPoint : MonoBehaviour
     {
         defaultBuilding.SetActive(true);
         currentTower.gameObject.SetActive(false);
+
+        SetInfo(TowerType.Empty, TowerLevel.Lv1);
     }
 }

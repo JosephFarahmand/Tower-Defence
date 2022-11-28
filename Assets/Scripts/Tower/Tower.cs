@@ -22,7 +22,7 @@ public abstract class Tower : MonoBehaviour
     [SerializeField] private float fireRate = 1;
     private float fireCountdown = 0;
 
-    private void Start()
+    protected virtual void Start()
     {
         targets = new List<Transform>();
 

@@ -275,8 +275,63 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7033871877912744954, guid: d3ac8c57ae979344cb104ceb81e7788c, type: 3}
+      propertyPath: events.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033871877912744954, guid: d3ac8c57ae979344cb104ceb81e7788c, type: 3}
+      propertyPath: events.Array.data[0].eventName
+      value: Dead
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033871877912744954, guid: d3ac8c57ae979344cb104ceb81e7788c, type: 3}
+      propertyPath: events.Array.data[0].event.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033871877912744954, guid: d3ac8c57ae979344cb104ceb81e7788c, type: 3}
+      propertyPath: events.Array.data[0].event.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033871877912744954, guid: d3ac8c57ae979344cb104ceb81e7788c, type: 3}
+      propertyPath: events.Array.data[0].event.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 750876434995612831}
+    - target: {fileID: 7033871877912744954, guid: d3ac8c57ae979344cb104ceb81e7788c, type: 3}
+      propertyPath: events.Array.data[0].event.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033871877912744954, guid: d3ac8c57ae979344cb104ceb81e7788c, type: 3}
+      propertyPath: events.Array.data[0].event.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DestroyAterDead
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033871877912744954, guid: d3ac8c57ae979344cb104ceb81e7788c, type: 3}
+      propertyPath: events.Array.data[0].event.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Enemy, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033871877912744954, guid: d3ac8c57ae979344cb104ceb81e7788c, type: 3}
+      propertyPath: events.Array.data[0].event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3ac8c57ae979344cb104ceb81e7788c, type: 3}
+--- !u!1 &4025018565140897866 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4274393840972073471, guid: d3ac8c57ae979344cb104ceb81e7788c, type: 3}
+  m_PrefabInstance: {fileID: 903551726342203829}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6965706970920919623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4025018565140897866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8376971194dc71c43a49bb013878b311, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 5903745520130219362}
+  deadBool: Dead
 --- !u!4 &4112550282886599460 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3862040310921181841, guid: d3ac8c57ae979344cb104ceb81e7788c, type: 3}
@@ -314,9 +369,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  damage: 1
   maxHealth: 100
   virtualHealthBar: {fileID: 8801041949619117126}
   pathNavigation: {fileID: 2530718760073865604}
+  animationController: {fileID: 6965706970920919623}
 --- !u!114 &2530718760073865604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,3 +387,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+--- !u!95 &5903745520130219362 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6729607953860211927, guid: d3ac8c57ae979344cb104ceb81e7788c, type: 3}
+  m_PrefabInstance: {fileID: 903551726342203829}
+  m_PrefabAsset: {fileID: 0}

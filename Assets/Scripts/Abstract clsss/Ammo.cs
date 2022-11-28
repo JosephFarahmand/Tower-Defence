@@ -15,6 +15,7 @@ public abstract class Ammo : MonoBehaviour
     public virtual void Seek(Transform _target)
     {
         target = _target;
+        if (target == null) return;
         targetPosition = target.position;
     }
 

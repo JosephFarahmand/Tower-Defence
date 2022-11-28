@@ -25,16 +25,20 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private PathNavigation pathNavigation;
 
+    [SerializeField] private CharacterAnimationController animationController;
+
     public CharacterType Type { get => type; }
 
     private void Awake()
     {
         pathNavigation ??= GetComponent<PathNavigation>();
+        animationController ??= GetComponentInChildren<CharacterAnimationController>();
     }
 
     private void Reset()
     {
         pathNavigation ??= GetComponent<PathNavigation>();
+        animationController ??= GetComponentInChildren<CharacterAnimationController>();
     }
 
     private void Start()
@@ -62,8 +66,19 @@ public class Enemy : MonoBehaviour
         virtualHealthBar.gameObject.SetActive(false);
         Reward.KillEnemy(this);
 
+        pathNavigation.enabled = false;
+
+        animationController.DeadAnimation();
+    }
+
+    #region Animation Event
+
+    public void DestroyAterDead()
+    {
         Destroy(gameObject);
     }
+
+    #endregion
 
     public void SetPath(Transform[] points)
     {
