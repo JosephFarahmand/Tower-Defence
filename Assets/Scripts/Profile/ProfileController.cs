@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿
 
 public class ProfileController
 {
@@ -10,12 +10,29 @@ public class ProfileController
     public ProfileController()
     {
         Profile = new Profile(500, 0);
+
+        GameManager.Instance.Stats.OnChangeState += Stats_OnChangeState;
     }
 
     public void Initialization()
     {
         onChangePropertyCallback?.Invoke(Profile);
     }
+
+    private void Stats_OnChangeState(GameStats.State currentState)
+    {
+        if (currentState == GameStats.State.Reset)
+        {
+            ResetGame();
+        }
+    }
+
+    private void ResetGame()
+    {
+        Profile = new Profile(500, 0);
+        onChangePropertyCallback?.Invoke(Profile);
+    }
+
 
     public void AddScore(int amount)
     {

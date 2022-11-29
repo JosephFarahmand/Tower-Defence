@@ -1,10 +1,12 @@
 
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class BuildingPoint : MonoBehaviour
 {
     BuildController buildController;
+    GameStats stats;
 
     [SerializeField] private Color hoverColor;
     [SerializeField] private GameObject defaultBuilding;
@@ -23,6 +25,7 @@ public class BuildingPoint : MonoBehaviour
         towers = new List<Tower>();
 
         buildController = GameManager.Instance.BuildController;
+        stats = GameManager.Instance.Stats;
         SetRenderers();
     }
 
@@ -39,6 +42,7 @@ public class BuildingPoint : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (stats.GameState != GameStats.State.Play) return;
         buildController.SetCanvasEnable(this);
     }
 
@@ -59,6 +63,7 @@ public class BuildingPoint : MonoBehaviour
 
     private void HoverColor()
     {
+        if (stats.GameState != GameStats.State.Play) return;
         foreach (var info in _renderers)
         {
             Renderer renderer = info.Key;
@@ -69,6 +74,7 @@ public class BuildingPoint : MonoBehaviour
 
     private void DefaultColor()
     {
+        if (stats.GameState != GameStats.State.Play) return;
         foreach (var info in _renderers)
         {
             Renderer renderer = info.Key;
@@ -79,13 +85,14 @@ public class BuildingPoint : MonoBehaviour
 
     public void CreateTower(Tower towerPrefab, TowerType type, TowerLevel level)
     {
+        // Diactive last active tower
         defaultBuilding.SetActive(false);
-
         if(currentTower != null)
         {
             currentTower.gameObject.SetActive(false);
         }
 
+        // Find new tower object
         var tower = towers.Find(x => x.Type == type && x.Level == level);
         if (tower == null)
         {
@@ -113,7 +120,7 @@ public class BuildingPoint : MonoBehaviour
     public void ClearTower()
     {
         defaultBuilding.SetActive(true);
-        currentTower.gameObject.SetActive(false);
+        currentTower?.gameObject.SetActive(false);
 
         SetInfo(TowerType.Empty, TowerLevel.Lv1);
     }

@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private float MaxHealth = 6;
+    [SerializeField] private float maxHealth =10;
+    public float MaxHealth => maxHealth;
 
     public static GameManager Instance { get; private set; }
 
@@ -38,13 +39,14 @@ public class GameManager : MonoBehaviour
 
     private void LoadControllers()
     {
+        Stats = new GameStats(MaxHealth);
+
         EnviromentController ??= FindObjectOfType<EnviromentController>();
         BuildController ??= FindObjectOfType<BuildController>();
         GameData ??= FindObjectOfType<GameData>();
 
         ProfileController = new ProfileController();
 
-        Stats = new GameStats(MaxHealth);
         EnemyController = new EnemyController();
 
         FindObjectOfType<UserInterfaceManager>().Initialization();
@@ -52,6 +54,12 @@ public class GameManager : MonoBehaviour
 
     private void InitializationControllers()
     {
+        EnviromentController.Initialization();
         ProfileController.Initialization();
+    }
+
+    public void ResetGame()
+    {
+        Stats.ChangeState(GameStats.State.Reset);   
     }
 }

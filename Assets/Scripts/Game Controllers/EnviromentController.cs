@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class EnviromentController : MonoBehaviour
 {
+    private List<BuildingPoint>  buildingPoints = new List<BuildingPoint>();
     public WaveController waveController { get; private set; }
 
     [SerializeField] private List<Wave> waves;
@@ -14,6 +15,13 @@ public class EnviromentController : MonoBehaviour
     private void Awake()
     {
         waveController = new WaveController(this);
+
+        buildingPoints = new List<BuildingPoint>(FindObjectsOfType<BuildingPoint>());
+    }
+
+    public void Initialization()
+    {
+        GameManager.Instance.Stats.OnChangeState += Stats_OnChangeState;
     }
 
     public List<Wave> GetWaves() => waves;
@@ -23,6 +31,21 @@ public class EnviromentController : MonoBehaviour
     private void Update()
     {
         waveController.Update();
+    }
+
+    private void Stats_OnChangeState(GameStats.State currentState)
+    {
+        if (currentState == GameStats.State.Reset)
+        {
+            ResetGame();
+        }
+    }
+
+    private void ResetGame()
+    {
+        waveController.ResetGame();
+
+        buildingPoints.ForEach(x => x.ClearTower());
     }
 }
 

@@ -8,7 +8,7 @@ public class WinPage : UIPage
 
     protected override void SetValues()
     {
-
+        
     }
 
     protected override void SetValuesOnSceneLoad()
@@ -16,7 +16,7 @@ public class WinPage : UIPage
         playAgainButton.onClick.RemoveAllListeners();
         playAgainButton.onClick.AddListener(() =>
         {
-            UserInterfaceManager.Open<GamePage>();
+            GameManager.Instance.ResetGame();
         });
     }
 }

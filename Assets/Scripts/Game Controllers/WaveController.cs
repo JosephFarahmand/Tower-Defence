@@ -48,4 +48,14 @@ public class WaveController
             }
         }
     }
+
+    public void ResetGame()
+    {
+        WaveNumber = 0;
+
+        currentWave = waves[WaveNumber];
+        countdown = currentWave.timeToStart;
+
+        OnStartWaveCallback?.Invoke(WaveNumber);
+    }
 }

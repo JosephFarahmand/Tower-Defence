@@ -19,7 +19,7 @@ public class GamePage : UIPage
 
     protected override void SetValues()
     {
-        TimeScaleHelper.ChangeTimeScale(TimeScaleHelper.TimeScale.x1);
+        
     }
 
     protected override void SetValuesOnSceneLoad()

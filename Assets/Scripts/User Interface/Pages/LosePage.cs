@@ -16,7 +16,7 @@ public class LosePage : UIPage
         playAgainButton.onClick.RemoveAllListeners();
         playAgainButton.onClick.AddListener(() =>
         {
-            UserInterfaceManager.Open<GamePage>();
+            GameManager.Instance.ResetGame();
         });
     }
 }
