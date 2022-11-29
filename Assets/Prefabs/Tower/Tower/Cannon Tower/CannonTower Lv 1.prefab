@@ -149,6 +149,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4297629385143707011, guid: 89a54a7324093e9499d0a5e4faf7a2aa, type: 3}
+      propertyPath: fireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -4297629385143707011, guid: 89a54a7324093e9499d0a5e4faf7a2aa, type: 3}
+      propertyPath: maxRange
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: -4297629385143707011, guid: 89a54a7324093e9499d0a5e4faf7a2aa, type: 3}
       propertyPath: firePoint
       value: 
       objectReference: {fileID: 2949242435261900966}
@@ -164,6 +172,10 @@ PrefabInstance:
       propertyPath: firePoints.Array.data[0]
       value: 
       objectReference: {fileID: 2949242435261900966}
+    - target: {fileID: -3547343411834789653, guid: 89a54a7324093e9499d0a5e4faf7a2aa, type: 3}
+      propertyPath: m_Radius
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 188321828292504015, guid: 89a54a7324093e9499d0a5e4faf7a2aa, type: 3}
       propertyPath: m_Name
       value: CannonTower Lv 1

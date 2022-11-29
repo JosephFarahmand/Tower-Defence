@@ -311,6 +311,14 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -4297629385143707011, guid: 89a54a7324093e9499d0a5e4faf7a2aa, type: 3}
+      propertyPath: fireRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -4297629385143707011, guid: 89a54a7324093e9499d0a5e4faf7a2aa, type: 3}
+      propertyPath: maxRange
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: -4297629385143707011, guid: 89a54a7324093e9499d0a5e4faf7a2aa, type: 3}
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 2404278724626244664, guid: 004143e032987ee4584ed131ce10e89b, type: 3}
@@ -330,6 +338,10 @@ PrefabInstance:
       propertyPath: firePoints.Array.data[2]
       value: 
       objectReference: {fileID: 2565415710150881068}
+    - target: {fileID: -3547343411834789653, guid: 89a54a7324093e9499d0a5e4faf7a2aa, type: 3}
+      propertyPath: m_Radius
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 188321828292504015, guid: 89a54a7324093e9499d0a5e4faf7a2aa, type: 3}
       propertyPath: m_Name
       value: CannonTower Lv 4-B
