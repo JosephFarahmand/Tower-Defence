@@ -9,6 +9,12 @@ public class Projectile : Ammo
 
     [SerializeField] float explosionRadius = 5.0f;
     [SerializeField] float explosionPower = 2000.0f;
+    Rigidbody _rigid;
+
+    private void OnEnable()
+    {
+        _rigid = GetComponent<Rigidbody>();
+    }
 
     public override void Seek(Transform _target)
     {
@@ -52,7 +58,7 @@ public class Projectile : Ammo
 
         var velocity = new Vector3(VXZ.x, Vy, VXZ.z);
 
-        var _rigid = GetComponent<Rigidbody>();
+        
         _rigid.velocity = velocity;
         _rigid.useGravity = true;
 
@@ -71,5 +77,10 @@ public class Projectile : Ammo
             yield return null;
         }
         transform.rotation = finalRotation;
+    }
+
+    private void FixedUpdate()
+    {
+        transform.LookAt(transform.position + _rigid.velocity);
     }
 }
