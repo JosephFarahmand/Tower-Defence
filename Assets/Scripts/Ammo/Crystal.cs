@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arrow : Ammo
+public class Crystal : Ammo
 {
     private void Update()
     {

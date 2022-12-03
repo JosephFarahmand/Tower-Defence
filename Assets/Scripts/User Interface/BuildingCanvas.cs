@@ -15,6 +15,7 @@ public class BuildingCanvas : MonoBehaviour
     [SerializeField] private ButtonInfo destroyButton;
     [SerializeField] private ButtonInfo buildCannonTowerButton;
     [SerializeField] private ButtonInfo buildArcherTowerButton;
+    [SerializeField] private ButtonInfo buildMageTowerButton;
 
     [System.Serializable]
     public class ButtonInfo
@@ -68,6 +69,7 @@ public class BuildingCanvas : MonoBehaviour
         destroyButton.SetActive(false);
         buildCannonTowerButton.SetActive(false);
         buildArcherTowerButton.SetActive(false);
+        buildMageTowerButton.SetActive(false);
 
         if (buildingPoint.currentTowerType == TowerType.Empty)
         {
@@ -79,11 +81,17 @@ public class BuildingCanvas : MonoBehaviour
             buildArcherTowerButton.AddListener(() =>
             {
                 Shop.PurcheseTower(TowerType.Archer, TowerLevel.Lv1);
-            }, gameData.GetTowerPrice(TowerType.Cannon, TowerLevel.Lv1));
+            }, gameData.GetTowerPrice(TowerType.Archer, TowerLevel.Lv1));
+
+            buildMageTowerButton.AddListener(() =>
+            {
+                Shop.PurcheseTower(TowerType.Mage, TowerLevel.Lv1);
+            }, gameData.GetTowerPrice(TowerType.Mage, TowerLevel.Lv1));
         }
         else
         {
-            if (buildingPoint.currentTowerLevel == TowerLevel.Lv5)
+            if (buildingPoint.currentTowerLevel == TowerLevel.Lv6)
+
             {
                 upgradeButton.SetInteractable(false);
                 upgradeText.SetText("Max Level");

@@ -43,7 +43,8 @@ public class Projectile : Ammo
                 TakeDamageToEnemy(enemy);
         }
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     void ShootWithGravity()

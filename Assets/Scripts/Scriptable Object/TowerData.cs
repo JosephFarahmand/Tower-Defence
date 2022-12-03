@@ -29,11 +29,13 @@ public enum TowerLevel
     Lv3,
     Lv4,
     Lv5,
+    Lv6,
 }
 
 public enum TowerType
 {
     Empty,
     Cannon,
-    Archer
+    Archer,
+    Mage
 }

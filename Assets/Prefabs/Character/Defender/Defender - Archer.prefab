@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aba87b114ebf294e89c82525e9c6e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: 1447776594257761054, guid: 3c4c96b4865c1614c82c9351556ad4c9, type: 3}
+  arrowId: Arrow
   firePoint: {fileID: 798982021027777464}
 --- !u!4 &1362899948413464138 stripped
 Transform:

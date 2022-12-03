@@ -5,7 +5,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Archer : MonoBehaviour
 {
-    [SerializeField] private Arrow arrowPrefab;
+    //[SerializeField] private Arrow arrowPrefab;
+    [SerializeField] private string arrowId;
     [SerializeField] private Transform firePoint;
 
     Transform target;
@@ -13,7 +14,11 @@ public class Archer : MonoBehaviour
     public void Shoot()
     {
         if (target == null) return;
-        var newProjectile = Instantiate(arrowPrefab, firePoint.position, firePoint.localRotation);
+        //var newProjectile = Instantiate(arrowPrefab, firePoint.position, firePoint.localRotation);
+
+        var newProjectile = ObjectPool.Instance.Get<Ammo>(arrowId);
+        newProjectile.transform.SetPositionAndRotation(firePoint.position, firePoint.localRotation);
+
         newProjectile.Seek(target);
     }
 

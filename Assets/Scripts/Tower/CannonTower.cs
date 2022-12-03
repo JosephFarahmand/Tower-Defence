@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CannonTower : Tower
 {
-    [SerializeField] private Projectile projectilePrefab;
+    //[SerializeField] private Projectile projectilePrefab;
+    [SerializeField] private string projectileId;
     [SerializeField] private List<Transform> firePoints;
 
     Action fire;
@@ -28,7 +29,11 @@ public class CannonTower : Tower
         {
             firePoints.ForEach(firePoint =>
             {
-                var newProjectile = Instantiate(projectilePrefab, firePoint.position, firePoint.localRotation);
+                var newProjectile = ObjectPool.Instance.Get<Projectile>(projectileId);
+                newProjectile.transform.SetPositionAndRotation(firePoint.position, firePoint.localRotation);
+                //var newProjectile = Instantiate(projectilePrefab, firePoint.position, firePoint.localRotation);
+
+
                 newProjectile.Seek(target);
             });
         };

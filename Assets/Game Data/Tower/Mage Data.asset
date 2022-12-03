@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc82f965b01635c46977e6e9b08b4f91, type: 3}
+  m_Name: Mage Data
+  m_EditorClassIdentifier: 
+  type: 3
+  towers:
+  - level: 0
+    prefab: {fileID: 5959523269111961137, guid: 4adeeb707d9a86f4dad570a1db000ef0, type: 3}
+    price: 10
+  - level: 1
+    prefab: {fileID: 5959523269111961137, guid: 02859019985f8fa45a32d01fad1c7280, type: 3}
+    price: 25
+  - level: 2
+    prefab: {fileID: 5959523269111961137, guid: 150538469c9c3a7479d5c8699d529031, type: 3}
+    price: 55
+  - level: 3
+    prefab: {fileID: 5959523269111961137, guid: c228e616085f44e4f9feaf73786a047f, type: 3}
+    price: 95
+  - level: 4
+    prefab: {fileID: 5959523269111961137, guid: a6b5fbbdd2e35ea4ab58f06109a158c1, type: 3}
+    price: 95
+  - level: 5
+    prefab: {fileID: 5959523269111961137, guid: d3284d79cdf0f3a49a83848eec4191cf, type: 3}
+    price: 100
