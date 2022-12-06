@@ -63,6 +63,10 @@ PrefabInstance:
       propertyPath: firePoint
       value: 
       objectReference: {fileID: 8781725086189672137}
+    - target: {fileID: 3850132202955670094, guid: 165167e26d4012c4d8ee0503150e9553, type: 3}
+      propertyPath: crystalPrefabId
+      value: Crystal 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 165167e26d4012c4d8ee0503150e9553, type: 3}
 --- !u!4 &7132438437804910760 stripped

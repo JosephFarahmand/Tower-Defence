@@ -261,6 +261,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4801397660391922087}
     - target: {fileID: -4297629385143707011, guid: 89a54a7324093e9499d0a5e4faf7a2aa, type: 3}
+      propertyPath: projectileId
+      value: Cannon Projectile Lv4
+      objectReference: {fileID: 0}
+    - target: {fileID: -4297629385143707011, guid: 89a54a7324093e9499d0a5e4faf7a2aa, type: 3}
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 2404278724626244664, guid: d5933727d489f30438ba90c51a28b0f7, type: 3}
