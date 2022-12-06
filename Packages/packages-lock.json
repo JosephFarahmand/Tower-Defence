@@ -69,6 +69,14 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.recorder": {
+      "version": "file:D:/Work/0 Unity Asset/com.unity.recorder-master/com.unity.recorder-master",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.unity.timeline": "1.0.0"
+      }
+    },
     "com.unity.services.core": {
       "version": "1.0.1",
       "depth": 1,
