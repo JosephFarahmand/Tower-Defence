@@ -11082,7 +11082,7 @@ MonoBehaviour:
   waves:
   - waypoint: {fileID: 2013019105}
     enemies:
-    - type: 1
+    - type: 2
       count: 5
     timeToStart: 5
   - waypoint: {fileID: 2013019105}
@@ -11098,8 +11098,6 @@ MonoBehaviour:
       count: 10
     - type: 3
       count: 3
-    - type: 1
-      count: 2
     timeToStart: 5
 --- !u!1001 &675448441
 PrefabInstance:
@@ -21926,14 +21924,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objects:
-  - id: Cannon Projectile
-    prefab: {fileID: 4893370318713308549, guid: 26f81bde44dc259438ad6660d9f0d15c, type: 3}
-    objectCount: 20
-  - id: Mage Projectile
+  - id: Crystal 1
     prefab: {fileID: 6482863620429914551, guid: c7a1fa2b69acdca4d9be0808c02b50b8, type: 3}
+    objectCount: 20
+  - id: Crystal 2
+    prefab: {fileID: 6482863620429914551, guid: 013915040517eec40884cf50d097389f, type: 3}
     objectCount: 20
   - id: Arrow
     prefab: {fileID: 2049563125012673111, guid: 3c4c96b4865c1614c82c9351556ad4c9, type: 3}
+    objectCount: 20
+  - id: Cannon Projectile Lv1
+    prefab: {fileID: 4893370318713308549, guid: 26f81bde44dc259438ad6660d9f0d15c, type: 3}
+    objectCount: 20
+  - id: Cannon Projectile Lv2
+    prefab: {fileID: 4893370318713308549, guid: 215f40ffd32d8204ab52422ea851052f, type: 3}
+    objectCount: 20
+  - id: Cannon Projectile Lv3
+    prefab: {fileID: 4893370318713308549, guid: 4debf2df1aa152d469ec09dfbc48540c, type: 3}
+    objectCount: 20
+  - id: Cannon Projectile Lv4
+    prefab: {fileID: 4893370318713308549, guid: d5933727d489f30438ba90c51a28b0f7, type: 3}
+    objectCount: 20
+  - id: Cannon Projectile Lv5
+    prefab: {fileID: 4893370318713308549, guid: 004143e032987ee4584ed131ce10e89b, type: 3}
     objectCount: 20
 --- !u!1001 &1390866114
 PrefabInstance:
